@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phishing &amp; Scam Detector</title>
+<style>
+  :root { --ink:#1d2433; --muted:#5d6678; --line:#d9dee7; --bg:#f5f6f8; --card:#fff;
+          --high:#b42318; --high-bg:#fdecea; --unc:#a15c07; --unc-bg:#fff4e0; --low:#1e6b3a; --low-bg:#e8f5ec;
+          --accent:#2b4fd8; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+  main { max-width:760px; margin:0 auto; padding:28px 16px 48px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 20px; font-size:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; margin-bottom:16px; }
+  .types { display:flex; gap:8px; margin-bottom:12px; }
+  .types label { border:1px solid var(--line); border-radius:999px; padding:5px 14px; cursor:pointer; font-size:14px; }
+  .types input { display:none; }
+  .types input:checked + span { font-weight:600; color:var(--accent); }
+  .types label:has(input:checked) { border-color:var(--accent); background:#eef2ff; }
+  textarea { width:100%; min-height:140px; border:1px solid var(--line); border-radius:8px; padding:10px; font:inherit; resize:vertical; }
+  .checks { margin:10px 0 14px; font-size:14px; color:var(--muted); display:grid; gap:4px; }
+  button { background:var(--accent); color:#fff; border:0; border-radius:8px; padding:9px 18px; font:inherit; font-weight:600; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  .result { display:none; }
+  .band { display:flex; align-items:center; gap:14px; padding:14px; border-radius:8px; margin-bottom:12px; }
+  .band.high { background:var(--high-bg); color:var(--high); }
+  .band.uncertain { background:var(--unc-bg); color:var(--unc); }
+  .band.low { background:var(--low-bg); color:var(--low); }
+  .score { font-size:34px; font-weight:700; line-height:1; min-width:64px; text-align:center; }
+  .score small { display:block; font-size:11px; font-weight:500; opacity:.8; }
+  .label { font-weight:700; font-size:17px; text-transform:capitalize; }
+  .meter { height:8px; border-radius:4px; background:linear-gradient(90deg,#3c9a5f 0 40%,#e8a23a 40% 70%,#d64545 70%); position:relative; margin:4px 0 14px; }
+  .meter i { position:absolute; top:-4px; width:3px; height:16px; background:var(--ink); border-radius:2px; }
+  h3 { font-size:14px; margin:14px 0 6px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  ul { margin:0; padding-left:18px; }
+  li { margin:3px 0; }
+  .tag { font-size:12px; color:var(--muted); }
+  .advice { border-left:3px solid var(--accent); padding:6px 10px; background:#f3f5fb; border-radius:4px; }
+  .meta { font-size:12px; color:var(--muted); margin-top:12px; }
+  .err { color:var(--high); font-size:14px; margin-top:8px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>AI Phishing &amp; Scam Detector</h1>
+  <p class="sub">CSIT305 research prototype. Paste an e-mail, SMS or link. Links are never opened.</p>
+
+  <form class="card" id="f">
+    <div class="types">
+      <label><input type="radio" name="type" value="email"><span>E-mail</span></label>
+      <label><input type="radio" name="type" value="sms" checked><span>SMS</span></label>
+      <label><input type="radio" name="type" value="url"><span>Link</span></label>
+    </div>
+    <textarea id="text" placeholder="Paste the message or link here"></textarea>
+    <div class="checks">
+      <label><input type="checkbox" id="consent"> I agree to have this text analysed on this computer.</label>
+      <label><input type="checkbox" id="log"> Allow a de-identified record (no message text) for evaluation.</label>
+    </div>
+    <button id="go" type="submit" disabled>Check</button>
+    <div class="err" id="err"></div>
+  </form>
+
+  <section class="card result" id="res">
+    <div class="band" id="band"><div class="score" id="score"></div><div><div class="label" id="label"></div><div id="expl"></div></div></div>
+    <div class="meter"><i id="pin"></i></div>
+    <h3>Warning signs found in your input</h3>
+    <ul id="cues"></ul>
+    <h3>What to do</h3>
+    <div class="advice" id="advice"></div>
+    <ul id="notes" style="margin-top:10px"></ul>
+    <div class="meta" id="meta"></div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+$("consent").addEventListener("change", e => $("go").disabled = !e.target.checked);
+$("f").addEventListener("submit", async e => {
+  e.preventDefault(); $("err").textContent = "";
+  const body = { type: document.querySelector("input[name=type]:checked").value, text: $("text").value,
+                 consent: $("consent").checked, allow_logging: $("log").checked };
+  const r = await fetch("/analyze", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(body) });
+  const d = await r.json();
+  if (!r.ok) { $("res").style.display = "none"; $("err").textContent = typeof d.detail === "string" ? d.detail : "Invalid input."; return; }
+  $("res").style.display = "block";
+  $("band").className = "band " + d.band;
+  $("score").innerHTML = d.risk + "<small>/100 risk</small>";
+  $("label").textContent = d.label + " (" + d.band + " risk)";
+  $("expl").textContent = d.explanation;
+  $("pin").style.left = "calc(" + d.risk + "% - 1px)";
+  $("cues").innerHTML = d.cues.length ? d.cues.map(c =>
+      `<li>${c.source === "url" ? "Link: " : "Text: "}<b>${esc(c.evidence)}</b>${c.category && c.source !== "url" ? ` <span class="tag">(${esc(c.category)})</span>` : ""}</li>`).join("")
+    : "<li class='tag'>None</li>";
+  $("advice").textContent = d.advice;
+  $("notes").innerHTML = d.notes.map(n => `<li class="tag">${esc(n)}</li>`).join("");
+  $("meta").textContent = `Model ${d.model_version} · ${d.timing_ms.total} ms · ${d.checked_urls.length} link(s) checked · logged: ${d.logged}`;
+});
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+</script>
+</body>
+</html>
