@@ -1,0 +1,17 @@
+id,type,text,expected,why
+E01,sms,,error 422,Empty message must be rejected cleanly
+E02,sms,"   ",error 422,Whitespace-only message
+E03,url,http://,error 422,Broken URL with scheme only
+E04,url,not a link,error 422,Plain words sent as a URL
+E05,url,http://192.168.10.5:8080/login.php,high or uncertain,Raw IP address + port + login page
+E06,url,http://www.paypal.com@account-check.xyz/verify,high or uncertain,'@' hides the real destination
+E07,url,https://xn--pypal-4ve.com/signin,high or uncertain,Punycode look-alike domain
+E08,url,https://bit.ly/3abcXYZ,uncertain or high,Shortened link hides the destination
+E09,sms,ok,low + short-message note,Very short SMS has little evidence
+E10,sms,"مرحبا، تم حظر حسابك البنكي. يرجى التحقق عبر الرابط bank-verify-ae.com",any + non-Latin note,Arabic text is outside the training data (multilingual limitation)
+E11,sms,😀😀😀,low + note,Emoji-only input
+E12,email,"URGENT: please submit your timesheet today, the payroll deadline is 5pm.",low or uncertain,Legitimate message that uses urgent words (false-alarm risk)
+E13,email,GENERATED_LONG_EMAIL,any (truncated),"Very long e-mail (60,000 characters) is truncated to 20,000 characters"
+E14,sms,"Check this out www.example.com/a www.example.com/b www.example.com/c www.example.com/d www.example.com/e www.example.com/f www.example.com/g www.example.com/h www.example.com/i www.example.com/j www.example.com/k www.example.com/l",any + 'first 10 links' note,More than 10 links
+E15,email,"<html><body><p>Your account is locked.</p><a href=""http://unlock-account-now.top/login"">Click here</a></body></html>",high or uncertain,HTML e-mail: link hidden behind an href must still be checked
+E16,sms,"Your parcel is held. Pay at delivery-update-example.test",high or uncertain,Example used in the proposal (Section 4.1)

@@ -1,0 +1,32 @@
+group,criterion,format,target,measured,met
+core,"Catching phishing (recall, high band)",email,>= 0.90,0.9868,True
+core,"Suspicious safety net (recall, 40-100)",email,>= 0.97,0.9912,True
+core,Avoiding false alarms (legit in high band),email,<= 2%,0.00%,True
+core,Overall balance (F1),email,>= 0.85,0.9934 (95% CI 0.9849-1.0),True
+core,Reliable risk score (Brier),email,<= 0.10,0.0008,True
+core,Baseline vs comparator (tfidf-linearsvc(C=0.3)) F1 diff,email,report with 95% CI,+0.0022 (95% CI +0.0000 to +0.0074),reported
+core,"Response time (classify / full result, median)",email,<= 0.5 s / <= 3 s,1.6 ms / 2.4 ms,True
+extended,Uncertain-band load (legit in 40-69),email,<= 10%,0.00%,True
+extended,"Precision at 90% recall, 5% phishing",email,>= 0.75,1.0 (95% CI 1.0-1.0),True
+core,"Catching phishing (recall, high band)",sms,>= 0.90,0.9348,True
+core,"Suspicious safety net (recall, 40-100)",sms,>= 0.97,0.9457,False
+core,Avoiding false alarms (legit in high band),sms,<= 2%,0.00%,True
+core,Overall balance (F1),sms,>= 0.85,0.9663 (95% CI 0.9367-0.9902),True
+core,Reliable risk score (Brier),sms,<= 0.10,0.008,True
+core,Baseline vs comparator (tfidf-linearsvc(C=1.0)) F1 diff,sms,report with 95% CI,+0.0000 (95% CI +0.0000 to +0.0000),reported
+core,"Response time (classify / full result, median)",sms,<= 0.5 s / <= 3 s,1.0 ms / 1.6 ms,True
+extended,Uncertain-band load (legit in 40-69),sms,<= 10%,0.59%,True
+core,"Catching phishing (recall, high band)",url,>= 0.90,0.9192,True
+core,"Suspicious safety net (recall, 40-100)",url,>= 0.97,0.9633,False
+core,Avoiding false alarms (legit in high band),url,<= 2%,1.51%,True
+core,Overall balance (F1),url,>= 0.85,0.9474 (95% CI 0.9413-0.9532),True
+core,Reliable risk score (Brier),url,<= 0.10,0.0262,True
+core,Baseline vs comparator (url-lexical-randomforest (v0.1.0 design)) F1 diff,url,report with 95% CI,+0.1371 (95% CI +0.1261 to +0.1479),reported
+core,"Response time (classify / full result, median)",url,<= 0.5 s / <= 3 s,1.6 ms / 2.6 ms,True
+extended,Uncertain-band load (legit in 40-69),url,<= 10%,2.01%,True
+extended,"Precision at 90% recall, 5% phishing",url,>= 0.75,0.8216 (95% CI 0.735-0.8854),True
+extended,Robustness to newer attacks (recall drop),email,<= 5 points,4.6 points (0.9461 -> 0.9),True
+extended,Explanation accuracy (automated evidence check),all,>= 85%,100% of 264 cues,True
+core,User understanding,all,>= 70% correct,not measured (needs ethics approval),not attempted
+extended,Rater agreement (Cohen's kappa),all,>= 0.60,not measured,not attempted
+extended,Protective effect (click-through),all,<= 10%,not measured,not attempted

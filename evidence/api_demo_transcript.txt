@@ -1,0 +1,390 @@
+# Live demo transcript - 2026-10-29 10:38 +04
+# Server started with: uvicorn phishdetect.api:app --app-dir src --port 8765
+
+$ curl http://127.0.0.1:8765/health
+{"status":"ok","version":"0.2.0","models":{"email":"email-v0.2.0","sms":"sms-v0.2.0","url":"url-v0.2.0"}}
+
+$ curl -X POST http://127.0.0.1:8765/analyze -H 'Content-Type: application/json' -d '{"type":"sms","text":"Your parcel is held. Pay at delivery-update-example.test","consent":true}'
+{
+    "label": "phishing",
+    "risk": 99,
+    "band": "high",
+    "text_probability": 0.1113,
+    "url_probability": 0.9948,
+    "checked_urls": [
+        "delivery-update-example.test"
+    ],
+    "riskiest_url": "delivery-update-example.test",
+    "cues": [
+        {
+            "source": "text",
+            "evidence": "at a link",
+            "category": "call to action (click / call / reply)",
+            "weight": 0.662
+        },
+        {
+            "source": "text",
+            "evidence": "held",
+            "category": "parcel or delivery",
+            "weight": 0.15
+        },
+        {
+            "source": "url",
+            "evidence": "the website ends in an uncommon domain extension",
+            "category": "link structure",
+            "feature": "uncommon_tld",
+            "z": 2.196,
+            "weight": 2.159
+        },
+        {
+            "source": "url",
+            "evidence": "the website name contains several hyphens",
+            "category": "link structure",
+            "feature": "num_hyphens_host",
+            "z": 4.115,
+            "weight": 1.913
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains words like login / verify / secure / account",
+            "category": "link structure",
+            "feature": "suspicious_words",
+            "z": 1.703,
+            "weight": 1.725
+        },
+        {
+            "source": "url",
+            "evidence": "the website name is unusually long",
+            "category": "link structure",
+            "feature": "host_length",
+            "z": 1.521,
+            "weight": 0.926
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'date', common in phishing links",
+            "category": "link structure",
+            "fragment": "date",
+            "weight": 0.207
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'ivery', common in phishing links",
+            "category": "link structure",
+            "fragment": "ivery",
+            "weight": 0.102
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'e-ex', common in phishing links",
+            "category": "link structure",
+            "fragment": "e-ex",
+            "weight": 0.102
+        }
+    ],
+    "explanation": "This looks risky because: call to action (click / call / reply); parcel or delivery; the website ends in an uncommon domain extension; the website name contains several hyphens.",
+    "advice": "Do not click links, reply or share details. Contact the organisation through its official website or phone number that you look up yourself.",
+    "notes": [],
+    "model_version": "sms-v0.2.0+url-v0.2.0",
+    "timing_ms": {
+        "classify": 14.43,
+        "total": 175.54
+    },
+    "logged": false
+}
+
+$ curl -X POST http://127.0.0.1:8765/analyze -H 'Content-Type: application/json' -d '{"type":"sms","text":"Hi, its Abdul. Running 10 mins late to the lab, start without me.","consent":true}'
+{
+    "label": "likely safe",
+    "risk": 2,
+    "band": "low",
+    "text_probability": 0.0168,
+    "url_probability": null,
+    "checked_urls": [],
+    "riskiest_url": null,
+    "cues": [
+        {
+            "source": "text",
+            "evidence": "running",
+            "category": null,
+            "weight": 0.658
+        },
+        {
+            "source": "text",
+            "evidence": "start",
+            "category": null,
+            "weight": 0.432
+        },
+        {
+            "source": "text",
+            "evidence": "10",
+            "category": null,
+            "weight": 0.387
+        },
+        {
+            "source": "text",
+            "evidence": "hi its",
+            "category": null,
+            "weight": 0.246
+        },
+        {
+            "source": "text",
+            "evidence": "mins",
+            "category": null,
+            "weight": 0.066
+        }
+    ],
+    "explanation": "No strong warning signs were found. Stay careful with unexpected requests.",
+    "advice": "No strong warning signs found. This is decision support, not a guarantee of safety.",
+    "notes": [],
+    "model_version": "sms-v0.2.0",
+    "timing_ms": {
+        "classify": 1.84,
+        "total": 2.6
+    },
+    "logged": false
+}
+
+$ curl -X POST http://127.0.0.1:8765/analyze -H 'Content-Type: application/json' -d '{"type":"email","text":"Subject: Mailbox storage almost full\nYour mailbox has reached 98% of its limit. Validate your account here: https://mail-quota-upgrade.com/owa","consent":true,"allow_logging":true}'
+{
+    "label": "phishing",
+    "risk": 100,
+    "band": "high",
+    "text_probability": 0.9998,
+    "url_probability": 0.9985,
+    "checked_urls": [
+        "https://mail-quota-upgrade.com/owa"
+    ],
+    "riskiest_url": "https://mail-quota-upgrade.com/owa",
+    "cues": [
+        {
+            "source": "text",
+            "evidence": "a link",
+            "category": "call to action (click / call / reply)",
+            "weight": 2.192
+        },
+        {
+            "source": "text",
+            "evidence": "account",
+            "category": "request for account details or log-in",
+            "weight": 1.426
+        },
+        {
+            "source": "text",
+            "evidence": "mailbox",
+            "category": null,
+            "weight": 1.238
+        },
+        {
+            "source": "text",
+            "evidence": "validate",
+            "category": "request for account details or log-in",
+            "weight": 0.513
+        },
+        {
+            "source": "text",
+            "evidence": "storage",
+            "category": null,
+            "weight": 0.257
+        },
+        {
+            "source": "text",
+            "evidence": "limit",
+            "category": null,
+            "weight": 0.192
+        },
+        {
+            "source": "url",
+            "evidence": "the website name contains several hyphens",
+            "category": "link structure",
+            "feature": "num_hyphens_host",
+            "z": 4.115,
+            "weight": 1.913
+        },
+        {
+            "source": "url",
+            "evidence": "the website name is unusually long",
+            "category": "link structure",
+            "feature": "host_length",
+            "z": 0.721,
+            "weight": 0.439
+        },
+        {
+            "source": "url",
+            "evidence": "the website name looks random",
+            "category": "link structure",
+            "feature": "host_entropy",
+            "z": 1.581,
+            "weight": 0.321
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'mail', common in phishing links",
+            "category": "link structure",
+            "fragment": "mail",
+            "weight": 0.549
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'com/o', common in phishing links",
+            "category": "link structure",
+            "fragment": "com/o",
+            "weight": 0.259
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'pgrad', common in phishing links",
+            "category": "link structure",
+            "fragment": "pgrad",
+            "weight": 0.163
+        }
+    ],
+    "explanation": "This looks risky because: call to action (click / call / reply); request for account details or log-in; the website name contains several hyphens; the website name is unusually long.",
+    "advice": "Do not click links, reply or share details. Contact the organisation through its official website or phone number that you look up yourself.",
+    "notes": [],
+    "model_version": "email-v0.2.0+url-v0.2.0",
+    "timing_ms": {
+        "classify": 3.73,
+        "total": 45.17
+    },
+    "logged": true
+}
+
+$ curl -X POST http://127.0.0.1:8765/analyze -H 'Content-Type: application/json' -d '{"type":"url","text":"http://secure-update-paypal.com/webapps/mpp/account-selection","consent":true}'
+{
+    "label": "phishing",
+    "risk": 100,
+    "band": "high",
+    "text_probability": null,
+    "url_probability": 0.9999,
+    "checked_urls": [
+        "http://secure-update-paypal.com/webapps/mpp/account-selection"
+    ],
+    "riskiest_url": "http://secure-update-paypal.com/webapps/mpp/account-selection",
+    "cues": [
+        {
+            "source": "url",
+            "evidence": "the link contains words like login / verify / secure / account",
+            "category": "link structure",
+            "feature": "suspicious_words",
+            "z": 5.75,
+            "weight": 5.827
+        },
+        {
+            "source": "url",
+            "evidence": "the website name contains several hyphens",
+            "category": "link structure",
+            "feature": "num_hyphens_host",
+            "z": 4.115,
+            "weight": 1.913
+        },
+        {
+            "source": "url",
+            "evidence": "a well-known brand name appears in the link but is not the real website",
+            "category": "link structure",
+            "feature": "brand_outside_domain",
+            "z": 3.244,
+            "weight": 1.439
+        },
+        {
+            "source": "url",
+            "evidence": "the website name is unusually long",
+            "category": "link structure",
+            "feature": "host_length",
+            "z": 0.987,
+            "weight": 0.602
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'payp', common in phishing links",
+            "category": "link structure",
+            "fragment": "payp",
+            "weight": 0.173
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'date', common in phishing links",
+            "category": "link structure",
+            "fragment": "date",
+            "weight": 0.147
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'cure', common in phishing links",
+            "category": "link structure",
+            "fragment": "cure",
+            "weight": 0.114
+        }
+    ],
+    "explanation": "This looks risky because: the link contains words like login / verify / secure / account; the website name contains several hyphens; a well-known brand name appears in the link but is not the real website; the website name is unusually long.",
+    "advice": "Do not click links, reply or share details. Contact the organisation through its official website or phone number that you look up yourself.",
+    "notes": [],
+    "model_version": "url-v0.2.0",
+    "timing_ms": {
+        "classify": 2.19,
+        "total": 3.22
+    },
+    "logged": false
+}
+
+$ curl -X POST http://127.0.0.1:8765/analyze -H 'Content-Type: application/json' -d '{"type":"url","text":"https://docs.python.org/3/library/sqlite3.html","consent":true}'
+{
+    "label": "likely safe",
+    "risk": 1,
+    "band": "low",
+    "text_probability": null,
+    "url_probability": 0.0091,
+    "checked_urls": [
+        "https://docs.python.org/3/library/sqlite3.html"
+    ],
+    "riskiest_url": "https://docs.python.org/3/library/sqlite3.html",
+    "cues": [
+        {
+            "source": "url",
+            "evidence": "the link has many folder levels",
+            "category": "link structure",
+            "feature": "num_path_segments",
+            "z": 0.225,
+            "weight": 0.308
+        },
+        {
+            "source": "url",
+            "evidence": "the website name looks random",
+            "category": "link structure",
+            "feature": "host_entropy",
+            "z": 0.3,
+            "weight": 0.061
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'lite', common in phishing links",
+            "category": "link structure",
+            "fragment": "lite",
+            "weight": 0.073
+        },
+        {
+            "source": "url",
+            "evidence": "the link contains the fragment 'y/sq', common in phishing links",
+            "category": "link structure",
+            "fragment": "y/sq",
+            "weight": 0.059
+        }
+    ],
+    "explanation": "No strong warning signs were found. Stay careful with unexpected requests.",
+    "advice": "No strong warning signs found. This is decision support, not a guarantee of safety.",
+    "notes": [],
+    "model_version": "url-v0.2.0",
+    "timing_ms": {
+        "classify": 1.72,
+        "total": 2.67
+    },
+    "logged": false
+}
+
+$ curl -X POST http://127.0.0.1:8765/analyze -H 'Content-Type: application/json' -d '{"type":"sms","text":"hello","consent":false}'
+{
+    "detail": "Consent is required before analysis."
+}
+
+# De-identified audit log after the requests above (only the request with allow_logging=true is stored, no text):
+(1, '2026-10-29T06:38:12+00:00', 'email', 'email-v0.2.0+url-v0.2.0', 'phishing', 100, 'high', 1, 45.17, '')

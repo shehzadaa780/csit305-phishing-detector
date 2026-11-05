@@ -1,0 +1,32 @@
+group,criterion,format,target,measured,met
+core,"Catching phishing (recall, high band)",email,>= 0.90,0.9868,True
+core,"Suspicious safety net (recall, 40-100)",email,>= 0.97,0.9912,True
+core,Avoiding false alarms (legit in high band),email,<= 2%,0.00%,True
+core,Overall balance (F1),email,>= 0.85,0.9934 (95% CI 0.9849-1.0),True
+core,Reliable risk score (Brier),email,<= 0.10,0.001,True
+core,Baseline vs comparator (tfidf-linearsvc(C=0.3)) F1 diff,email,report with 95% CI,+0.0022 (95% CI +0.0000 to +0.0074),reported
+core,"Response time (classify / full result, median)",email,<= 0.5 s / <= 3 s,1.9 ms / 34.6 ms,True
+extended,Uncertain-band load (legit in 40-69),email,<= 10%,0.04%,True
+extended,"Precision at 90% recall, 5% phishing",email,>= 0.75,1.0 (95% CI 1.0-1.0),True
+core,"Catching phishing (recall, high band)",sms,>= 0.90,0.9348,True
+core,"Suspicious safety net (recall, 40-100)",sms,>= 0.97,0.9565,False
+core,Avoiding false alarms (legit in high band),sms,<= 2%,0.15%,True
+core,Overall balance (F1),sms,>= 0.85,0.9609 (95% CI 0.9285-0.9878),True
+core,Reliable risk score (Brier),sms,<= 0.10,0.0084,True
+core,Baseline vs comparator (tfidf-linearsvc(C=1.0)) F1 diff,sms,report with 95% CI,-0.0058 (95% CI -0.0210 to +0.0000),reported
+core,"Response time (classify / full result, median)",sms,<= 0.5 s / <= 3 s,1.4 ms / 6.5 ms,True
+extended,Uncertain-band load (legit in 40-69),sms,<= 10%,0.74%,True
+core,"Catching phishing (recall, high band)",url,>= 0.90,0.8022,False
+core,"Suspicious safety net (recall, 40-100)",url,>= 0.97,0.8947,False
+core,Avoiding false alarms (legit in high band),url,<= 2%,5.24%,False
+core,Overall balance (F1),url,>= 0.85,0.8537 (95% CI 0.8443-0.8633),True
+core,Reliable risk score (Brier),url,<= 0.10,0.0765,True
+core,Baseline vs comparator (url-lexical-logreg) F1 diff,url,report with 95% CI,+0.1154 (95% CI +0.1031 to +0.1265),reported
+core,"Response time (classify / full result, median)",url,<= 0.5 s / <= 3 s,13.1 ms / 40.0 ms,True
+extended,Uncertain-band load (legit in 40-69),url,<= 10%,5.68%,True
+extended,"Precision at 90% recall, 5% phishing",url,>= 0.75,0.3006 (95% CI 0.2376-0.3772),False
+extended,Robustness to newer attacks (recall drop),email,<= 5 points,4.6 points (0.9461 -> 0.9),True
+extended,Explanation accuracy (automated evidence check),all,>= 85%,100% of 229 cues,True
+core,User understanding,all,>= 70% correct,not measured (needs ethics approval),not attempted
+extended,Rater agreement (Cohen's kappa),all,>= 0.60,not measured,not attempted
+extended,Protective effect (click-through),all,<= 10%,not measured,not attempted

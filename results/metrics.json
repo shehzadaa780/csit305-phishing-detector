@@ -1,0 +1,276 @@
+{
+  "formats": {
+    "email": {
+      "model": "tfidf-logreg(C=30.0)",
+      "comparator_name": "tfidf-linearsvc(C=0.3)",
+      "model_version": "email-v0.2.0",
+      "main": {
+        "support": {
+          "phishing": 228,
+          "legitimate": 2301
+        },
+        "confusion_high_band": {
+          "TP": 225,
+          "FP": 0,
+          "TN": 2301,
+          "FN": 3
+        },
+        "precision": 1.0,
+        "recall_high": 0.9868,
+        "f1": 0.9934,
+        "macro_f1": 0.9964,
+        "accuracy": 0.9988,
+        "specificity": 1.0,
+        "false_positive_rate_high": 0.0,
+        "recall_high_or_uncertain": 0.9912,
+        "uncertain_band_load_legit": 0.0,
+        "brier": 0.0008
+      },
+      "comparator": {
+        "support": {
+          "phishing": 228,
+          "legitimate": 2301
+        },
+        "confusion_high_band": {
+          "TP": 224,
+          "FP": 0,
+          "TN": 2301,
+          "FN": 4
+        },
+        "precision": 1.0,
+        "recall_high": 0.9825,
+        "f1": 0.9912,
+        "macro_f1": 0.9951,
+        "accuracy": 0.9984,
+        "specificity": 1.0,
+        "false_positive_rate_high": 0.0,
+        "recall_high_or_uncertain": 0.9912,
+        "uncertain_band_load_legit": 0.0004,
+        "brier": 0.0009
+      },
+      "bootstrap": {
+        "f1_main_95ci": [
+          0.9849,
+          1.0
+        ],
+        "f1_main_minus_comparator": 0.0022,
+        "f1_diff_95ci": [
+          0.0,
+          0.0074
+        ]
+      },
+      "low_prevalence": {
+        "prevalence": 0.05,
+        "n_phishing_sampled": 121,
+        "n_legitimate": 2301,
+        "precision_at_90_recall_mean": 1.0,
+        "precision_95ci": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "sms": {
+      "model": "tfidf-logreg(C=30.0)",
+      "comparator_name": "tfidf-linearsvc(C=1.0)",
+      "model_version": "sms-v0.2.0",
+      "main": {
+        "support": {
+          "phishing": 92,
+          "legitimate": 675
+        },
+        "confusion_high_band": {
+          "TP": 86,
+          "FP": 0,
+          "TN": 675,
+          "FN": 6
+        },
+        "precision": 1.0,
+        "recall_high": 0.9348,
+        "f1": 0.9663,
+        "macro_f1": 0.9809,
+        "accuracy": 0.9922,
+        "specificity": 1.0,
+        "false_positive_rate_high": 0.0,
+        "recall_high_or_uncertain": 0.9457,
+        "uncertain_band_load_legit": 0.0059,
+        "brier": 0.008
+      },
+      "comparator": {
+        "support": {
+          "phishing": 92,
+          "legitimate": 675
+        },
+        "confusion_high_band": {
+          "TP": 86,
+          "FP": 0,
+          "TN": 675,
+          "FN": 6
+        },
+        "precision": 1.0,
+        "recall_high": 0.9348,
+        "f1": 0.9663,
+        "macro_f1": 0.9809,
+        "accuracy": 0.9922,
+        "specificity": 1.0,
+        "false_positive_rate_high": 0.0,
+        "recall_high_or_uncertain": 0.9457,
+        "uncertain_band_load_legit": 0.0074,
+        "brier": 0.008
+      },
+      "bootstrap": {
+        "f1_main_95ci": [
+          0.9367,
+          0.9902
+        ],
+        "f1_main_minus_comparator": 0.0,
+        "f1_diff_95ci": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "url": {
+      "model": "url-charngram+lexical-logreg(C=30.0)",
+      "comparator_name": "url-lexical-randomforest (v0.1.0 design)",
+      "model_version": "url-v0.2.0",
+      "main": {
+        "support": {
+          "phishing": 3107,
+          "legitimate": 4383
+        },
+        "confusion_high_band": {
+          "TP": 2856,
+          "FP": 66,
+          "TN": 4317,
+          "FN": 251
+        },
+        "precision": 0.9774,
+        "recall_high": 0.9192,
+        "f1": 0.9474,
+        "macro_f1": 0.956,
+        "accuracy": 0.9577,
+        "specificity": 0.9849,
+        "false_positive_rate_high": 0.0151,
+        "recall_high_or_uncertain": 0.9633,
+        "uncertain_band_load_legit": 0.0201,
+        "brier": 0.0262
+      },
+      "comparator": {
+        "support": {
+          "phishing": 3107,
+          "legitimate": 4383
+        },
+        "confusion_high_band": {
+          "TP": 2331,
+          "FP": 314,
+          "TN": 4069,
+          "FN": 776
+        },
+        "precision": 0.8813,
+        "recall_high": 0.7502,
+        "f1": 0.8105,
+        "macro_f1": 0.8462,
+        "accuracy": 0.8545,
+        "specificity": 0.9284,
+        "false_positive_rate_high": 0.0716,
+        "recall_high_or_uncertain": 0.8606,
+        "uncertain_band_load_legit": 0.0787,
+        "brier": 0.1026
+      },
+      "bootstrap": {
+        "f1_main_95ci": [
+          0.9413,
+          0.9532
+        ],
+        "f1_main_minus_comparator": 0.1371,
+        "f1_diff_95ci": [
+          0.1261,
+          0.1479
+        ]
+      },
+      "low_prevalence": {
+        "prevalence": 0.05,
+        "n_phishing_sampled": 231,
+        "n_legitimate": 4383,
+        "precision_at_90_recall_mean": 0.8216,
+        "precision_95ci": [
+          0.735,
+          0.8854
+        ]
+      }
+    }
+  },
+  "email_time_split": {
+    "train_phishing_years": "2015-2019",
+    "test_phishing_years": "2020-2022",
+    "n_old_test": 167,
+    "n_new_test": 410,
+    "recall_high_old": 0.9461,
+    "recall_high_new": 0.9,
+    "recall_drop_points": 4.6,
+    "false_positive_rate_high": 0.0
+  },
+  "latency": {
+    "email": {
+      "n": 300,
+      "classify_ms_median": 1.6,
+      "classify_ms_p95": 3.8,
+      "total_ms_median": 2.4,
+      "total_ms_p95": 5.5
+    },
+    "sms": {
+      "n": 300,
+      "classify_ms_median": 1.0,
+      "classify_ms_p95": 2.2,
+      "total_ms_median": 1.6,
+      "total_ms_p95": 3.1
+    },
+    "url": {
+      "n": 300,
+      "classify_ms_median": 1.6,
+      "classify_ms_p95": 2.3,
+      "total_ms_median": 2.6,
+      "total_ms_p95": 4.0
+    }
+  },
+  "challenge_set": {
+    "email": {
+      "n_phishing": 8,
+      "n_legit": 8,
+      "recall_high": 0.875,
+      "recall_high_or_uncertain": 0.875,
+      "false_alarm_high": 0.125,
+      "legit_flagged_any": 0.125
+    },
+    "sms": {
+      "n_phishing": 8,
+      "n_legit": 8,
+      "recall_high": 0.625,
+      "recall_high_or_uncertain": 0.875,
+      "false_alarm_high": 0.0,
+      "legit_flagged_any": 0.0
+    },
+    "url": {
+      "n_phishing": 4,
+      "n_legit": 4,
+      "recall_high": 1.0,
+      "recall_high_or_uncertain": 1.0,
+      "false_alarm_high": 0.25,
+      "legit_flagged_any": 0.25
+    }
+  },
+  "explanations": {
+    "n_inputs": 40,
+    "n_cues": 264,
+    "evidence_fidelity_automated": 1.0,
+    "unsupported_claims_per_100_warnings": 0.0,
+    "consistency_same_input_twice": 1.0,
+    "note": "Automated check only: confirms each cue exists in the input / URL features. Human rating of clarity, comprehension and Cohen's kappa was NOT performed."
+  },
+  "edge_cases": {
+    "passed": 18,
+    "total": 18
+  },
+  "generated_at": "2026-10-29 10:37:55"
+}

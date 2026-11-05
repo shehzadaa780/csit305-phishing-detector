@@ -1,0 +1,19 @@
+id,type,why,expected,http_status,risk,band,notes_or_error,pass
+E01,sms,Empty message must be rejected cleanly,error 422,422,,,input is empty,PASS
+E02,sms,Whitespace-only message,error 422,422,,,input is empty,PASS
+E03,url,Broken URL with scheme only,error 422,422,,,this does not look like a URL,PASS
+E04,url,Plain words sent as a URL,error 422,422,,,this does not look like a URL,PASS
+E05,url,Raw IP address + port + login page,high or uncertain,200,100,high,,PASS
+E06,url,'@' hides the real destination,high or uncertain,200,100,high,,PASS
+E07,url,Punycode look-alike domain,high or uncertain,200,76,high,,PASS
+E08,url,Shortened link hides the destination,uncertain or high,200,93,high,,PASS
+E09,sms,Very short SMS has little evidence,low + short-message note,200,0,low,"Very short message: little evidence, so the score is less reliable.",PASS
+E10,sms,Arabic text is outside the training data (multilingual limitation),any + non-Latin note,200,96,high,"Very short message: little evidence, so the score is less reliable. Most of the text is not in English. The text model was trained on English only, so only the links were assessed reliably.",PASS
+E11,sms,Emoji-only input,low + note,200,0,low,"Very short message: little evidence, so the score is less reliable. No readable words were found (symbol-only text).",PASS
+E12,email,Legitimate message that uses urgent words (false-alarm risk),low or uncertain,200,7,low,,PASS
+E13,email,"Very long e-mail (60,000 characters) is truncated to 20,000 characters",any (truncated),200,0,low,,PASS
+E14,sms,More than 10 links,any + 'first 10 links' note,200,9,low,Only the first 10 links were checked.,PASS
+E15,email,HTML e-mail: link hidden behind an href must still be checked,high or uncertain,200,100,high,,PASS
+E16,sms,Example used in the proposal (Section 4.1),high or uncertain,200,99,high,,PASS
+E17,sms,No consent -> request refused (workflow step 1),error 403,403,,,Consent is required before analysis.,PASS
+E18,pdf,Unsupported input type,error 422,422,,,validation error,PASS

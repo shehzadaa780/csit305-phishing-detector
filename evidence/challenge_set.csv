@@ -1,0 +1,57 @@
+id,type,label,group,text
+C01,email,1,ai_phishing,"Subject: Action needed: confirm your student account before enrolment closes
+Hi, as part of this term's systems upgrade, all student accounts must be re-confirmed by Friday. Please sign in through the secure portal at https://uowd-student-portal-confirm.com/login so your timetable and Moodle access are not interrupted. IT Service Desk"
+C02,email,1,ai_phishing,"Subject: Invoice INV-20931 overdue
+Good morning, our records show that invoice INV-20931 for your recent order remains unpaid. To avoid a late fee, please settle the balance today using the payment link below. https://billing-docs-share.com/inv/20931 Kind regards, Accounts Receivable"
+C03,email,1,ai_phishing,"Subject: Shared document: Q3 salary adjustments
+Hello, HR has shared 'Q3 Salary Adjustments.xlsx' with you. The file is available for 48 hours. Open it with your Microsoft 365 credentials here: https://sharepoint-online-docs.net/view?id=88213"
+C04,email,1,ai_phishing,"Subject: Unusual sign-in attempt blocked
+We noticed a sign-in attempt to your Apple ID from a new device in Lagos. If this was not you, please secure your account immediately at http://appleid.apple.com.security-check-id.info/verify and confirm your payment information."
+C05,email,1,ai_phishing,"Subject: Your refund is ready
+Dear customer, after reviewing your tax return we have determined that you are eligible for a refund of AED 1,840. Please submit your card details through our refund form within 3 days to receive the transfer: https://tax-refund-claims.org/form"
+C06,email,1,ai_phishing,"Subject: Quick favour
+Hi, are you at your desk? I am in a meeting and need you to buy four Apple gift cards for a client today. Please send me the codes as soon as you have them. I will reimburse you this afternoon. Thanks"
+C07,email,1,ai_phishing,"Subject: Mailbox storage almost full
+Your mailbox has reached 98% of its storage limit. Messages sent to you will be returned to the sender. Increase your storage for free by validating your account here: https://mail-quota-upgrade.com/owa"
+C08,email,1,ai_phishing,"Subject: Delivery attempt failed
+We tried to deliver your package today but no one was available. To reschedule delivery, please pay the redelivery fee of 9.50 using the link below. Your parcel will be returned after 48 hours. https://dhl-redelivery-service.com/track"
+C09,sms,1,ai_phishing,"Aramex: your shipment is on hold due to an unpaid customs fee of 12 AED. Pay now to release it: aramex-customs-fee.com/pay"
+C10,sms,1,ai_phishing,"Emirates NBD: your card has been temporarily blocked. Verify your identity to restore access: enbd-secure-verify.com"
+C11,sms,1,ai_phishing,"Hi mum, I dropped my phone and this is my new number. Can you send me 500 for rent today? I will pay you back next week x"
+C12,sms,1,ai_phishing,"Your Netflix membership could not be renewed. Update your payment details within 24 hours to avoid suspension: netflix-billing-update.net"
+C13,sms,1,ai_phishing,"RTA: You have an unpaid traffic fine. Settle it today to avoid a penalty: rta-fines-portal.com"
+C14,sms,1,ai_phishing,"Congratulations! Your number was selected in the Etisalat anniversary draw. Claim your iPhone at etisalat-rewards-claim.com before midnight."
+C15,sms,1,ai_phishing,"Your WhatsApp verification code was requested on a new device. If this wasn't you, secure your account: whatsapp-account-secure.com"
+C16,sms,1,ai_phishing,"Microsoft: unusual activity was detected on your account. Reply with the 6-digit code we sent to keep your account active."
+C17,email,0,modern_legit,"Subject: Your order has shipped
+Hi Sara, good news: your order #114-2231 has shipped and should arrive on Thursday. You can track it in the app under Your Orders. Thanks for shopping with us."
+C18,email,0,modern_legit,"Subject: CSIT305 group meeting moved
+Hi all, the group meeting is moved to Wednesday 2pm in room 3.14 because of the quiz. Please bring your draft sections so we can merge them. Cheers, Imad"
+C19,email,0,modern_legit,"Subject: Your monthly statement is available
+Your October e-statement is now available. For your security we never ask for your password or PIN by email. Log in to the banking app as usual to view it."
+C20,email,0,modern_legit,"Subject: Library loan due soon
+This is a reminder that the book 'Introduction to Machine Learning' is due back on 4 November. You can renew it online from your library account."
+C21,email,0,modern_legit,"Subject: Password changed
+The password for your account was changed on 28 October at 09:14. If you made this change, no action is needed. If not, please contact the IT Service Desk on the number on the university website."
+C22,email,0,modern_legit,"Subject: Invoice for October
+Hi, please find attached the invoice for the October design work as agreed. Payment terms are 30 days. Let me know if you need anything changed. Best, Omar"
+C23,email,0,modern_legit,"Subject: Reminder: assessment submission
+Dear students, a reminder that the project submission is due on Sunday at 11:59pm via the Assessment Hub. Late submissions follow the policy in the subject outline. Regards, Ms. Bhagwat"
+C24,email,0,modern_legit,"Subject: Thanks for your feedback
+Thank you for completing our customer survey last week. Your feedback helps us improve our service. You do not need to do anything else."
+C25,sms,0,modern_legit,"Your Careem ride is arriving in 3 minutes. White Nissan Sunny, plate L 45821."
+C26,sms,0,modern_legit,"Your OTP for login is 482913. Do not share this code with anyone. It expires in 5 minutes."
+C27,sms,0,modern_legit,"Hi, it's Abdul. Running 10 mins late to the lab, start without me."
+C28,sms,0,modern_legit,"Your appointment at the dental clinic is confirmed for Monday 10:30am. Reply C to cancel."
+C29,sms,0,modern_legit,"Salary credited to your account ending 4417. Available balance will update shortly."
+C30,sms,0,modern_legit,"Talabat: your order from Shawarma Station has been picked up and is on the way!"
+C31,sms,0,modern_legit,"Reminder: library closes at 8pm today due to maintenance."
+C32,sms,0,modern_legit,"Mum: dinner at 8, can you pick up bread on the way home?"
+C33,url,1,ai_phishing,"http://uow-edu-au.login-verify-portal.com/sso"
+C34,url,1,ai_phishing,"https://bit.ly/3xR9qPz"
+C35,url,1,ai_phishing,"http://secure-update-paypal.com/webapps/mpp/account-selection"
+C36,url,1,ai_phishing,"https://microsoftonline-auth.xyz/common/oauth2/authorize?client_id=4765445b"
+C37,url,0,modern_legit,"https://www.uowdubai.ac.ae/"
+C38,url,0,modern_legit,"https://github.com/scikit-learn/scikit-learn"
+C39,url,0,modern_legit,"https://www.paypal.com/ae/home"
+C40,url,0,modern_legit,"https://docs.python.org/3/library/sqlite3.html"

@@ -1,0 +1,161 @@
+{
+  "package_version": "0.1.0",
+  "seed": 42,
+  "thresholds": {
+    "uncertain": 40,
+    "high": 70
+  },
+  "trained_at": "2026-10-29T06:22:19+00:00",
+  "models": {
+    "email": {
+      "version": "email-v0.1.0",
+      "model": "tfidf-logreg(C=10.0)",
+      "comparator": "tfidf-linearsvc(C=0.3)",
+      "data": {
+        "cleaning": {
+          "raw": 17354,
+          "empty_removed": 0,
+          "conflicting_labels_removed": 0,
+          "duplicates_removed": 496,
+          "final": 16858
+        },
+        "train": {
+          "n": 11800,
+          "positives": 1067,
+          "negatives": 10733,
+          "positive_rate": 0.0904
+        },
+        "val": {
+          "n": 2529,
+          "positives": 229,
+          "negatives": 2300,
+          "positive_rate": 0.0905
+        },
+        "test": {
+          "n": 2529,
+          "positives": 228,
+          "negatives": 2301,
+          "positive_rate": 0.0902
+        }
+      },
+      "train_seconds": 13.0,
+      "tuning": {
+        "logreg_val_f1_by_C": {
+          "0.3": 0.9848,
+          "1.0": 0.9848,
+          "3.0": 0.9891,
+          "10.0": 0.9913
+        },
+        "svm_val_f1_by_C": {
+          "0.3": 0.9934,
+          "1.0": 0.9912,
+          "3.0": 0.9912,
+          "10.0": 0.9912
+        }
+      }
+    },
+    "sms": {
+      "version": "sms-v0.1.0",
+      "model": "tfidf-logreg(C=10.0)",
+      "comparator": "tfidf-linearsvc(C=1.0)",
+      "data": {
+        "cleaning": {
+          "raw": 5574,
+          "empty_removed": 2,
+          "conflicting_labels_removed": 0,
+          "duplicates_removed": 464,
+          "final": 5108
+        },
+        "train": {
+          "n": 3575,
+          "positives": 426,
+          "negatives": 3149,
+          "positive_rate": 0.1192
+        },
+        "val": {
+          "n": 766,
+          "positives": 91,
+          "negatives": 675,
+          "positive_rate": 0.1188
+        },
+        "test": {
+          "n": 767,
+          "positives": 92,
+          "negatives": 675,
+          "positive_rate": 0.1199
+        }
+      },
+      "train_seconds": 0.6,
+      "tuning": {
+        "logreg_val_f1_by_C": {
+          "0.3": 0.913,
+          "1.0": 0.9239,
+          "3.0": 0.929,
+          "10.0": 0.9333
+        },
+        "svm_val_f1_by_C": {
+          "0.3": 0.9213,
+          "1.0": 0.9364,
+          "3.0": 0.9364,
+          "10.0": 0.9143
+        }
+      }
+    },
+    "url": {
+      "version": "url-v0.1.0",
+      "model": "url-lexical-randomforest(300 trees)",
+      "comparator": "url-lexical-logreg",
+      "data": {
+        "cleaning": {
+          "raw": 73575,
+          "empty_removed": 0,
+          "conflicting_labels_removed": 0,
+          "duplicates_removed": 23349,
+          "final": 50226
+        },
+        "train": {
+          "n": 35158,
+          "positives": 14224,
+          "negatives": 20934,
+          "positive_rate": 0.4046
+        },
+        "val": {
+          "n": 7534,
+          "positives": 3048,
+          "negatives": 4486,
+          "positive_rate": 0.4046
+        },
+        "test": {
+          "n": 7534,
+          "positives": 3048,
+          "negatives": 4486,
+          "positive_rate": 0.4046
+        }
+      },
+      "train_seconds": 7.7,
+      "feature_importance": {
+        "url_length": 0.0848,
+        "host_length": 0.0573,
+        "path_length": 0.1213,
+        "num_dots_host": 0.0206,
+        "num_hyphens_host": 0.0085,
+        "num_digits": 0.0732,
+        "digit_ratio": 0.0571,
+        "num_special": 0.0242,
+        "num_path_segments": 0.1282,
+        "query_length": 0.046,
+        "has_ip_host": 0.003,
+        "has_at_symbol": 0.0095,
+        "has_double_slash_path": 0.0014,
+        "is_shortener": 0.0,
+        "has_punycode": 0.0001,
+        "uncommon_tld": 0.0881,
+        "suspicious_words": 0.0708,
+        "brand_outside_domain": 0.0207,
+        "host_entropy": 0.077,
+        "longest_token": 0.1083,
+        "has_port": 0.0
+      }
+    }
+  }
+}
