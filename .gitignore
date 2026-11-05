@@ -1,0 +1,16 @@
+# datasets are downloaded by scripts/get_data.sh (check their licences before sharing)
+data/raw/*/
+!data/raw/.gitkeep
+
+# trained models are rebuilt with `python -m phishdetect.train` (~2 minutes)
+models/*.joblib
+
+# runtime audit log
+results/audit_log.sqlite
+
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.ipynb_checkpoints/
+.DS_Store
