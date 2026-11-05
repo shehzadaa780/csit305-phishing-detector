@@ -1,0 +1,33 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\shehz\Desktop\Shehzad's Folder\UOWD Work\CSIT305\Project\phishing-detector (2)\phishing-detector\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\shehz\Desktop\Shehzad's Folder\UOWD Work\CSIT305\Project\phishing-detector (2)\phishing-detector
+plugins: anyio-4.16.0
+collecting ... collected 23 items
+tests/test_pipeline_api.py::test_band_thresholds PASSED                  [  4%]
+tests/test_pipeline_api.py::test_obvious_phishing_sms_is_high PASSED     [  8%]
+tests/test_pipeline_api.py::test_ordinary_sms_is_low PASSED              [ 13%]
+tests/test_pipeline_api.py::test_text_and_link_scores_take_the_maximum PASSED [ 17%]
+tests/test_pipeline_api.py::test_explanations_only_cite_words_in_the_input PASSED [ 21%]
+tests/test_pipeline_api.py::test_same_input_gives_same_output PASSED     [ 26%]
+tests/test_pipeline_api.py::test_bad_inputs_raise[sms-] PASSED           [ 30%]
+tests/test_pipeline_api.py::test_bad_inputs_raise[sms-   ] PASSED        [ 34%]
+tests/test_pipeline_api.py::test_bad_inputs_raise[url-http://] PASSED    [ 39%]
+tests/test_pipeline_api.py::test_bad_inputs_raise[url-not a link] PASSED [ 43%]
+tests/test_pipeline_api.py::test_bad_inputs_raise[pdf-hello] PASSED      [ 47%]
+tests/test_pipeline_api.py::test_api_requires_consent PASSED             [ 52%]
+tests/test_pipeline_api.py::test_api_returns_contract PASSED             [ 56%]
+tests/test_pipeline_api.py::test_audit_log_stores_no_message_text PASSED [ 60%]
+tests/test_pipeline_api.py::test_health PASSED                           [ 65%]
+tests/test_preprocess.py::test_email_addresses_and_phones_are_masked PASSED [ 69%]
+tests/test_preprocess.py::test_email_address_is_not_a_link PASSED        [ 73%]
+tests/test_preprocess.py::test_explicit_and_bare_links_are_extracted PASSED [ 78%]
+tests/test_preprocess.py::test_at_symbol_url_is_kept_whole PASSED        [ 82%]
+tests/test_preprocess.py::test_file_names_are_not_links PASSED           [ 86%]
+tests/test_preprocess.py::test_html_href_links_are_found PASSED          [ 91%]
+tests/test_preprocess.py::test_scheme_and_www_removed_before_features PASSED [ 95%]
+tests/test_preprocess.py::test_suspicious_url_features PASSED            [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 23 passed, 1 warning in 10.50s ========================

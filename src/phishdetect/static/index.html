@@ -65,8 +65,10 @@
   <section class="card result" id="res">
     <div class="band" id="band"><div class="score" id="score"></div><div><div class="label" id="label"></div><div id="expl"></div></div></div>
     <div class="meter"><i id="pin"></i></div>
-    <h3>Warning signs found in your input</h3>
-    <ul id="cues"></ul>
+    <div id="cueBlock">
+      <h3>Warning signs found in your input</h3>
+      <ul id="cues"></ul>
+    </div>
     <h3>What to do</h3>
     <div class="advice" id="advice"></div>
     <ul id="notes" style="margin-top:10px"></ul>
@@ -89,6 +91,8 @@ $("f").addEventListener("submit", async e => {
   $("label").textContent = d.label + " (" + d.band + " risk)";
   $("expl").textContent = d.explanation;
   $("pin").style.left = "calc(" + d.risk + "% - 1px)";
+  // A low-risk result has no warning signs to show, even though the model still returns its cues (EL21).
+  $("cueBlock").style.display = d.band === "low" ? "none" : "block";
   $("cues").innerHTML = d.cues.length ? d.cues.map(c =>
       `<li>${c.source === "url" ? "Link: " : "Text: "}<b>${esc(c.evidence)}</b>${c.category && c.source !== "url" ? ` <span class="tag">(${esc(c.category)})</span>` : ""}</li>`).join("")
     : "<li class='tag'>None</li>";
