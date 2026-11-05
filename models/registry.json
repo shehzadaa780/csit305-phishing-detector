@@ -1,0 +1,151 @@
+{
+  "package_version": "0.2.0",
+  "seed": 42,
+  "thresholds": {
+    "uncertain": 40,
+    "high": 70
+  },
+  "trained_at": "2026-10-29T06:34:42+00:00",
+  "models": {
+    "email": {
+      "version": "email-v0.2.0",
+      "model": "tfidf-logreg(C=30.0)",
+      "comparator": "tfidf-linearsvc(C=0.3)",
+      "data": {
+        "cleaning": {
+          "raw": 17354,
+          "empty_removed": 0,
+          "conflicting_labels_removed": 0,
+          "duplicates_removed": 496,
+          "final": 16858
+        },
+        "train": {
+          "n": 11800,
+          "positives": 1067,
+          "negatives": 10733,
+          "positive_rate": 0.0904
+        },
+        "val": {
+          "n": 2529,
+          "positives": 229,
+          "negatives": 2300,
+          "positive_rate": 0.0905
+        },
+        "test": {
+          "n": 2529,
+          "positives": 228,
+          "negatives": 2301,
+          "positive_rate": 0.0902
+        }
+      },
+      "train_seconds": 13.8,
+      "tuning": {
+        "logreg_val_f1_by_C": {
+          "0.3": 0.9848,
+          "1.0": 0.9848,
+          "3.0": 0.9891,
+          "10.0": 0.9913,
+          "30.0": 0.9934
+        },
+        "svm_val_f1_by_C": {
+          "0.3": 0.9934,
+          "1.0": 0.9912,
+          "3.0": 0.9912,
+          "10.0": 0.9912,
+          "30.0": 0.9912
+        }
+      }
+    },
+    "sms": {
+      "version": "sms-v0.2.0",
+      "model": "tfidf-logreg(C=30.0)",
+      "comparator": "tfidf-linearsvc(C=1.0)",
+      "data": {
+        "cleaning": {
+          "raw": 5574,
+          "empty_removed": 2,
+          "conflicting_labels_removed": 0,
+          "duplicates_removed": 464,
+          "final": 5108
+        },
+        "train": {
+          "n": 3575,
+          "positives": 426,
+          "negatives": 3149,
+          "positive_rate": 0.1192
+        },
+        "val": {
+          "n": 766,
+          "positives": 91,
+          "negatives": 675,
+          "positive_rate": 0.1188
+        },
+        "test": {
+          "n": 767,
+          "positives": 92,
+          "negatives": 675,
+          "positive_rate": 0.1199
+        }
+      },
+      "train_seconds": 0.8,
+      "tuning": {
+        "logreg_val_f1_by_C": {
+          "0.3": 0.913,
+          "1.0": 0.9239,
+          "3.0": 0.929,
+          "10.0": 0.9333,
+          "30.0": 0.9425
+        },
+        "svm_val_f1_by_C": {
+          "0.3": 0.9213,
+          "1.0": 0.9364,
+          "3.0": 0.9364,
+          "10.0": 0.9143,
+          "30.0": 0.8876
+        }
+      }
+    },
+    "url": {
+      "version": "url-v0.2.0",
+      "model": "url-charngram+lexical-logreg(C=30.0)",
+      "comparator": "url-lexical-randomforest (v0.1.0 design)",
+      "data": {
+        "cleaning": {
+          "raw": 73575,
+          "empty_removed": 0,
+          "conflicting_labels_removed": 0,
+          "duplicates_removed": 23349,
+          "final": 50226
+        },
+        "train": {
+          "n": 33380,
+          "positives": 13723,
+          "negatives": 19657,
+          "positive_rate": 0.4111
+        },
+        "val": {
+          "n": 9356,
+          "positives": 3490,
+          "negatives": 5866,
+          "positive_rate": 0.373
+        },
+        "test": {
+          "n": 7490,
+          "positives": 3107,
+          "negatives": 4383,
+          "positive_rate": 0.4148
+        }
+      },
+      "train_seconds": 56.4,
+      "tuning": {
+        "logreg_val_f1_by_C": {
+          "0.3": 0.9234,
+          "1.0": 0.9472,
+          "3.0": 0.9574,
+          "10.0": 0.9626,
+          "30.0": 0.9633
+        }
+      }
+    }
+  }
+}
