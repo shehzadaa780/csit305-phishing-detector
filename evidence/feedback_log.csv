@@ -1,1 +1,3 @@
 date,from (tutor or peer),feedback as recorded,change made or reason not changed,where (section or commit),evidence log id
+2026-11-12,"Tutor, prototype demo","Asked about limitations: can the detector flag legitimate links, and why? (as recorded by the group)",Scored eight real websites and explained the three causes with measured scores,"Report Section 6.6, Table VI",EL26
+2026-11-12,"Tutor, prototype demo","Asked about future scope: what could be added, and what readers can learn from the paper and artefact (as recorded by the group)",Added a prioritised future-scope list and a 'what readers can learn' paragraph,"Report Section 6.6, Table VI",
