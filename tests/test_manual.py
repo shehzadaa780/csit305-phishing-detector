@@ -60,4 +60,52 @@ def test_fake_salik_toll_fine_email(det):
     assert result["band"] == "high"
 
 
+# ---- Written by: Shehzad Siddiqui ----
+# Made-up phishing e-mail written by the author, imitating a "Claude Pro" account invitation.
+# Expected: high. Author's reason: it looks too real, with colours and layout.
+# Kept exactly as written, including the zero-width characters hidden in the postal address
+# and the [.] in the e-mail addresses. The "Get Claude Pro" button text has no link behind it.
+FAKE_CLAUDE_PRO_EMAIL = """This link has a 48 hour expiry - Contact Contoso Corp IT support if you need assistance or miss the access window. →
+
+Claude
+Welcome to Claude Pro
+Your organization has set up a business account and provisioned you with Claude Pro access. The link is valid for 48 hours.
+
+Activate your account using the link
+Your Claude Pro access is ready to activate. Use the link below to sign in with your company account or continue with Google.
+
+Get Claude Pro
+Need help getting started?
+Intro to Claude Cowork
+Intro to Claude Cowork
+Everything from your first task to file workflows, plugins, and more.
+
+Start the course
+
+ \t
+Customize Cowork
+Set up your workspace
+Connect your tools, write your first skill, and bundle it for your team.
+
+Read the guide
+
+Was this email useful?
+Thumbs up visual graphic\tThumbs down visual graphic
+Claude
+Download on the iOS App Store visual graphic\tGet it on Google Play visual graphic
+Instagram\tLinkedIn\tX\tYoutube
+
+Anthropic PBC, 54‌8 M‌a‌r‌k‌e‌t S‌t, PMB 9‌0‌3‌7‌5, Sa‌n F‌r‌a‌n‌c‌i‌s‌c‌o, C‌A 9‌4‌1‌0‌4
+
+This email was sent to john[.]doe@mybusiness[.]com. To opt out of future emails, click unsubscribe.
+
+Claude ( claude@cloud-notification-services[.]com )
+to john[.]doe@mybusiness[.]com"""
+
+
+def test_fake_claude_pro_invitation_email(det):
+    result = det.analyze("email", FAKE_CLAUDE_PRO_EMAIL)
+    assert result["band"] == "high"
+
+
 # ---- Written by: [name] ----
