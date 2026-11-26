@@ -1,0 +1,37 @@
+AI PHISHING & SCAM DETECTOR - HOW TO RUN IT
+CSIT305 group project prototype. Everything runs on your own computer: no account
+is needed, and links you paste in are never opened.
+
+The shared zip includes the trained models, so it starts straight away. A copy cloned
+from GitHub has no models (they are too large for the repository): its first run
+downloads the datasets and trains them, which takes about 3 minutes and on Windows
+needs Git for Windows (git-scm.com).
+
+WHAT YOU NEED
+- Python 3.11 or newer, from https://www.python.org/downloads/
+  On Windows, tick "Add python.exe to PATH" on the first screen of the installer.
+- Internet access the first time only, to install the Python packages (about 1-3 minutes).
+
+WINDOWS
+1. Right-click the zip and choose "Extract All". Do not run it from inside the zip.
+2. Open the extracted "phishing-detector" folder and double-click run_windows.bat.
+   If Windows shows "Windows protected your PC", click "More info" then "Run anyway".
+3. Wait for the browser to open http://127.0.0.1:8000
+   (if it does not open by itself, type that address into your browser).
+4. To stop it, close the black window.
+
+MAC
+1. Double-click the zip to extract it.
+2. Open Terminal, type "cd " (with a space), drag the phishing-detector folder into the
+   Terminal window, and press Enter.
+3. Run:  bash run_mac_linux.sh
+4. To stop it, press Ctrl+C in Terminal.
+
+TRY THESE
+Tick "I agree to have this text analysed on this computer", pick the type, paste, Check.
+- SMS:  Your parcel is held. Pay at delivery-update-example.test        -> about 99, high risk
+- SMS:  Hi, its Abdul. Running 10 mins late to the lab, start without me. -> about 2, low risk
+- Link: http://shop-deals-online.com/offer                                -> about 47, uncertain
+
+It is a research prototype: decision support, not a guarantee of safety.
+More detail is in README.md.

@@ -71,7 +71,7 @@ flowchart LR
 ```
 src/phishdetect/   preprocess.py  url_features.py  url_model.py  data.py  train.py
                    explain.py  pipeline.py  audit.py  api.py  evaluate.py  static/index.html
-tests/             23 unit + integration tests (pytest)
+tests/             23 AI-written unit + integration tests, and 3 hand-written tests by the group (test_manual.py)
 evidence/          evidence_log.csv, edge_cases.csv (+ results), challenge_set.csv,
                    pytest_output.txt, api_demo_transcript.txt
 results/           metrics.json, criteria_table.csv, challenge_results.csv, figures/,
@@ -116,7 +116,7 @@ cd src
 python -m phishdetect.train              # ~2 min; writes models/*.joblib and models/registry.json
 python -m phishdetect.evaluate           # ~1 min; writes results/ and evidence/edge_case_results.csv
 cd ..
-python -m pytest -v                      # 23 tests
+python -m pytest -v                      # 26 tests: 25 pass; 1 hand-written test fails by design (EL23)
 uvicorn phishdetect.api:app --app-dir src --port 8000
 # open http://127.0.0.1:8000 for the web page, or http://127.0.0.1:8000/docs for the API
 ```
@@ -173,7 +173,9 @@ bank-statement e-mail (87). The challenge set was **not** used to change the mod
 18/18 edge cases pass ([`evidence/edge_case_results.csv`](evidence/edge_case_results.csv)):
 empty input, broken links, IP-address links, `@` links, punycode, shorteners, Arabic text,
 emoji-only, very long e-mails, >10 links, HTML links, no consent, wrong type.
-23/23 automated tests pass ([`evidence/pytest_output.txt`](evidence/pytest_output.txt)).
+23/23 AI-written automated tests pass ([`evidence/pytest_output.txt`](evidence/pytest_output.txt)).
+The 3 hand-written tests in `tests/test_manual.py` pass 2 of 3: the bank card-delivery SMS scores high
+where its author expected uncertain, and is kept as a failing test rather than tuned (evidence log EL23-EL25).
 
 ## 7. Development iterations
 
